@@ -207,26 +207,35 @@
         }
     </style>
     <script>
-        // Проверяем реферера и userAgent
-        function isFromBot() {
-            // Всегда показываем контент, если сайт открыт через Telegram WebView
-            if(window.Telegram && window.Telegram.WebApp) return true;
-            
-            // Проверяем UserAgent Telegram
-            if(/Telegram/.test(navigator.userAgent)) return true;
-            
-            // Проверяем, что перешли по ссылке из бота
-            try {
-                const referrer = document.referrer.toLowerCase();
-                return referrer.includes('t.me') || referrer.includes('telegram');
-            } catch(e) {
-                return false;
-            }
+        // Проверяем, открыт ли сайт в Telegram WebView
+        function isTelegramWebApp() {
+            return window.Telegram && window.Telegram.WebApp;
         }
 
         // Проверяем при загрузке
         window.onload = function() {
-            if(!isFromBot()) {
+            // Если открыто в Telegram WebView - показываем контент
+            if(isTelegramWebApp()) {
+                // Инициализируем WebApp
+                Telegram.WebApp.expand();
+                Telegram.WebApp.enableClosingConfirmation();
+                return;
+            }
+            
+            // Проверяем UserAgent Telegram
+            const isTelegram = /Telegram/.test(navigator.userAgent);
+            
+            // Проверяем реферера
+            let isFromBot = false;
+            try {
+                const referrer = document.referrer.toLowerCase();
+                isFromBot = referrer.includes('t.me') || referrer.includes('telegram');
+            } catch(e) {
+                console.log("Не удалось проверить реферера");
+            }
+            
+            // Если не из Telegram - показываем сообщение об ограничении доступа
+            if(!isTelegram && !isFromBot) {
                 document.body.innerHTML = `
                     <div class="access-denied">
                         <h1>🚫 Доступ ограничен</h1>
@@ -249,7 +258,7 @@
     </script>
 </head>
 <body>
-    <!-- Контент будет заменён если доступ не из бота -->
+    <!-- Основной контент -->
     <div class="container">
         <div class="header">
             <h1>🍌 Banana Bot - Правила и команды 🍌</h1>

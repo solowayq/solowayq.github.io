@@ -3,68 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍌 Banana Bot - Правила</title>
+    <title>🍌 Banana Bot - Правила и команды</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fffde7;
+            font-family: 'Comic Neue', cursive;
+            background-color: #f5f5dc;
             color: #5d4037;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255, 253, 231, 0.9), rgba(255, 245, 157, 0.8));
+            z-index: -1;
+        }
+        
+        .container {
             max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
         }
+        
         .header {
-            background-color: #ffd54f;
+            background-color: rgba(255, 213, 79, 0.9);
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 3px solid #ffc107;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="60" font-family="Arial" font-size="60" fill="rgba(255,255,255,0.2)">🍌</text></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
         h1 {
             color: #5d4037;
             margin: 0;
+            font-size: 2.2em;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
+        
         .content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            border: 2px solid #ffecb3;
         }
-        .rule {
-            margin-bottom: 15px;
+        
+        .section {
+            margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px dashed #ffd54f;
+            border-bottom: 2px dashed #ffd54f;
         }
-        .rule:last-child {
+        
+        .section:last-child {
             border-bottom: none;
         }
+        
+        h2 {
+            color: #e65100;
+            margin-top: 0;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2::before {
+            content: "🍌";
+            margin-right: 10px;
+        }
+        
+        h3 {
+            color: #bf360c;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        li::before {
+            content: "🍌";
+            position: absolute;
+            left: -20px;
+        }
+        
+        .command {
+            background-color: #fff8e1;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-family: monospace;
+            display: inline-block;
+            margin: 3px 0;
+            border: 1px solid #ffe082;
+        }
+        
+        .game-rules {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #ffb74d;
+        }
+        
         .footer {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 0.9em;
             color: #8d6e63;
+            padding: 15px;
+            background-color: rgba(255, 213, 79, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        
         .banana {
             font-size: 24px;
+            display: inline-block;
+            animation: bounce 2s infinite;
         }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
         .bot-link {
             display: inline-block;
-            background-color: #ffd54f;
-            color: #5d4037;
-            padding: 10px 15px;
-            border-radius: 5px;
+            background-color: #ff9800;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+        
         .bot-link:hover {
-            background-color: #ffc107;
+            background-color: #f57c00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
         }
+        
         .access-denied {
             text-align: center;
             padding: 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .math-gif {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
     </style>
     <script>
@@ -89,77 +239,158 @@
                     <div class="access-denied">
                         <h1>🚫 Доступ ограничен</h1>
                         <p>Эта страница доступна только через Telegram бота Banana Bot.</p>
-                        <p>Пожалуйста, перейдите в бота и используйте команду /info или /start для получения ссылки.</p>
+                        <p>Пожалуйста, перейдите в бота и используйте команду <span class="command">/info</span> или <span class="command">/start</span> для получения ссылки.</p>
                         <a href="https://t.me/Bananq_robot" class="bot-link">Перейти в бота 🍌</a>
-                        <div style="font-size: 48px; margin-top: 20px;">🍌</div>
+                        <div style="font-size: 48px; margin-top: 20px;" class="banana">🍌</div>
                     </div>
                 `;
                 
-                // Меняем URL в адресной строке на читаемый текст
+                // Меняем URL в адресной строке
                 history.replaceState(null, null, '/banana-bot-rules');
             } else {
-                // Для пользователей из Telegram - скрываем file:// путь и заменяем его
+                // Для пользователей из Telegram - скрываем file:// путь
                 if(window.location.protocol === 'file:') {
-                    history.replaceState(null, null, '/banana-bot-rules');
+                    history.replaceState(null, null, '/правила-бота-banana');
                 }
-                
-                // Логирование для отладки
-                console.log("Пользователь зашел через Telegram Bot");
             }
         };
+        
+        // Изменяем title при уходе со страницы
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = "🍌 Banana Bot - Правила";
+            } else {
+                document.title = "Правила использования Banana Bot 🍌";
+            }
+        });
     </script>
 </head>
 <body>
     <!-- Контент будет заменён если доступ не из бота -->
-    <div class="header">
-        <h1><span class="banana">🍌</span> Banana Bot - Правила <span class="banana">🍌</span></h1>
-    </div>
-    
-    <div class="content">
-        <div class="rule">
-            <h3>1. Основные положения</h3>
-            <p>Banana Bot - это игровой бот с виртуальной валютой ⭐. Все игры носят развлекательный характер.</p>
+    <div class="container">
+        <div class="header">
+            <h1>🍌 Banana Bot - Правила и команды 🍌</h1>
         </div>
         
-        <div class="rule">
-            <h3>2. Виртуальная валюта</h3>
-            <p>Баланс каждого пользователя сбрасывается до 50⭐ ежедневно в 00:00 по времени сервера.</p>
+        <div class="content">
+            <div class="section">
+                <h2>Основные правила</h2>
+                <p>Banana Bot - это веселый игровой бот с виртуальной валютой <span class="highlight">⭐ Звезды</span>. Все игры носят развлекательный характер.</p>
+                
+                <div class="math-gif">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Математическая гифка" style="max-width: 200px; border-radius: 8px;">
+                </div>
+                
+                <h3>Важные особенности:</h3>
+                <ul>
+                    <li>Баланс каждого пользователя сбрасывается до <span class="highlight">50⭐</span> ежедневно в 00:00 по времени сервера</li>
+                    <li>Играть можно как в личных сообщениях с ботом, так и в групповых чатах</li>
+                    <li>Все решения бота окончательны и обсуждению не подлежат</li>
+                    <li>Администрация бота не несет ответственности за возможные технические сбои</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Доступные команды</h2>
+                
+                <h3>Основные команды:</h3>
+                <p><span class="command">/start</span> - Начать работу с ботом</p>
+                <p><span class="command">/info</span> - Показать эту справку</p>
+                <p><span class="command">/balance</span> - Показать текущий баланс</p>
+                <p><span class="command">/top</span> - Показать топ-5 игроков</p>
+                <p><span class="command">/joke</span> - Получить случайную банановую шутку <span class="emoji">🍌</span></p>
+                <p><span class="command">/pets</span> - Получить случайное фото питомца <span class="emoji">🐶😺</span></p>
+                
+                <h3>Игровые команды:</h3>
+                <p><span class="command">/dice</span> - Игра в кости <span class="emoji">🎲</span></p>
+                <p><span class="command">/slot</span> - Игра в слоты <span class="emoji">🎰</span></p>
+                <p><span class="command">/football</span> - Игра в футбол <span class="emoji">⚽</span></p>
+                <p><span class="command">/basketball</span> - Игра в баскетбол <span class="emoji">🏀</span></p>
+                <p><span class="command">/bowling</span> - Игра в боулинг <span class="emoji">🎳</span></p>
+                <p><span class="command">/darts</span> - Игра в дартс <span class="emoji">🎯</span></p>
+            </div>
+            
+            <div class="section">
+                <h2>Правила игр</h2>
+                
+                <div class="game-rules">
+                    <h3>🎲 Кости</h3>
+                    <p>Бросайте виртуальные кости и выигрывайте звезды!</p>
+                    <ul>
+                        <li>Выигрыш при 4, 5 или 6 очках</li>
+                        <li>Можно ставить на конкретное число (1-6) с повышенным коэффициентом</li>
+                        <li>Коэффициент выигрыша: <span class="highlight">1.5x</span> (обычный режим), <span class="highlight">5x</span> (ставка на число)</li>
+                    </ul>
+                </div>
+                
+                <div class="game-rules">
+                    <h3>🎰 Слоты</h3>
+                    <p>Крутите барабаны и получайте комбинации!</p>
+                    <ul>
+                        <li>Джекпот: специальные комбинации (максимальный выигрыш)</li>
+                        <li>Три одинаковых символа: хороший выигрыш</li>
+                        <li>Два одинаковых символа: небольшой выигрыш</li>
+                        <li>Коэффициенты: <span class="highlight">10x</span> (джекпот), <span class="highlight">3x</span> (три одинаковых), <span class="highlight">1.5x</span> (два одинаковых)</li>
+                    </ul>
+                </div>
+                
+                <div class="game-rules">
+                    <h3>⚽ Футбол</h3>
+                    <p>Забивайте голы и зарабатывайте звезды!</p>
+                    <ul>
+                        <li>Выигрыш при 4, 5 или 6 очках</li>
+                        <li>Коэффициент выигрыша: <span class="highlight">2x</span></li>
+                    </ul>
+                </div>
+                
+                <div class="game-rules">
+                    <h3>🏀 Баскетбол</h3>
+                    <p>Забрасывайте мяч в корзину!</p>
+                    <ul>
+                        <li>Выигрыш при 5 или 6 очках</li>
+                        <li>Коэффициент выигрыша: <span class="highlight">2.5x</span></li>
+                    </ul>
+                </div>
+                
+                <div class="game-rules">
+                    <h3>🎳 Боулинг</h3>
+                    <p>Сбивайте кегли и получайте призы!</p>
+                    <ul>
+                        <li>STRIKE (6 кеглей): максимальный выигрыш</li>
+                        <li>3-5 кеглей: выигрыш с повышающим коэффициентом</li>
+                        <li>Можно ставить на конкретное количество кеглей (1-6)</li>
+                        <li>Коэффициенты: <span class="highlight">3x</span> (STRIKE), <span class="highlight">1.3x-1.5x</span> (3-5 кеглей), <span class="highlight">4x</span> (ставка на число)</li>
+                    </ul>
+                </div>
+                
+                <div class="game-rules">
+                    <h3>🎯 Дартс</h3>
+                    <p>Попадайте в яблочко и побеждайте!</p>
+                    <ul>
+                        <li>Золотое яблочко (6 очков): максимальный выигрыш</li>
+                        <li>Яблочко (5 очков): большой выигрыш</li>
+                        <li>Внутреннее кольцо (4 очка): средний выигрыш</li>
+                        <li>Коэффициенты: <span class="highlight">3x</span> (5-6 очков), <span class="highlight">1.5x</span> (3-4 очка)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Режимы игры</h2>
+                <p>Для каждой игры доступны три режима:</p>
+                <ul>
+                    <li><span class="highlight">Без ставки</span> - игра для развлечения с небольшим выигрышем</li>
+                    <li><span class="highlight">Со ставкой</span> - ставьте свои звезды для увеличения выигрыша</li>
+                    <li><span class="highlight">Ставка на число</span> - угадайте конкретный результат для максимального выигрыша (доступно не во всех играх)</li>
+                </ul>
+            </div>
         </div>
         
-        <div class="rule">
-            <h3>3. Доступные игры</h3>
-            <p>Бот предлагает несколько игр: кости, слоты, футбол, баскетбол, боулинг и дартс. В каждой игре можно играть бесплатно или делать ставки.</p>
+        <div class="footer">
+            <p>Banana Bot © 2023 | Все права защищены</p>
+            <p class="banana">🍌 🍌 🍌</p>
+            <a href="https://t.me/Bananq_robot" class="bot-link">Начать играть с ботом</a>
         </div>
-        
-        <div class="rule">
-            <h3>4. Режимы игры</h3>
-            <p>Для каждой игры доступны три режима: без ставки, со ставкой и ставка на конкретное число (для некоторых игр).</p>
-        </div>
-        
-        <div class="rule">
-            <h3>5. Топ игроков</h3>
-            <p>Команда /top показывает 5 игроков с наибольшим балансом. Топ обновляется в реальном времени.</p>
-        </div>
-        
-        <div class="rule">
-            <h3>6. Банановые шутки</h3>
-            <p>Команда /joke выдает случайную банановую шутку из коллекции бота.</p>
-        </div>
-        
-        <div class="rule">
-            <h3>7. Питомцы</h3>
-            <p>Команда /pets показывает случайное фото кошки или собаки.</p>
-        </div>
-        
-        <div class="rule">
-            <h3>8. Ответственность</h3>
-            <p>Администрация бота не несет ответственности за возможные технические сбои. Все решения бота окончательны.</p>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>Banana Bot © 2023 | Все права защищены</p>
-        <p class="banana">🍌 🍌 🍌</p>
     </div>
 </body>
 </html>

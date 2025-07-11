@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍌 Banana Bot - Правила и команды</title>
+    <title>Banana Bot - Правила и команды</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
@@ -157,17 +157,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .banana {
-            font-size: 24px;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
         .bot-link {
             display: inline-block;
             background-color: #ff9800;
@@ -220,6 +209,9 @@
     <script>
         // Проверяем реферера и userAgent
         function isFromBot() {
+            // Всегда показываем контент, если сайт открыт через Telegram WebView
+            if(window.Telegram && window.Telegram.WebApp) return true;
+            
             // Проверяем UserAgent Telegram
             if(/Telegram/.test(navigator.userAgent)) return true;
             
@@ -240,27 +232,18 @@
                         <h1>🚫 Доступ ограничен</h1>
                         <p>Эта страница доступна только через Telegram бота Banana Bot.</p>
                         <p>Пожалуйста, перейдите в бота и используйте команду <span class="command">/info</span> или <span class="command">/start</span> для получения ссылки.</p>
-                        <a href="https://t.me/Bananq_robot" class="bot-link">Перейти в бота 🍌</a>
-                        <div style="font-size: 48px; margin-top: 20px;" class="banana">🍌</div>
+                        <a href="https://t.me/Bananq_robot" class="bot-link">Перейти в бота</a>
                     </div>
                 `;
-                
-                // Меняем URL в адресной строке
-                history.replaceState(null, null, '/banana-bot-rules');
-            } else {
-                // Для пользователей из Telegram - скрываем file:// путь
-                if(window.location.protocol === 'file:') {
-                    history.replaceState(null, null, '/правила-бота-banana');
-                }
             }
         };
         
         // Изменяем title при уходе со страницы
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
-                document.title = "🍌 Banana Bot - Правила";
+                document.title = "Banana Bot - Правила";
             } else {
-                document.title = "Правила использования Banana Bot 🍌";
+                document.title = "Правила использования Banana Bot";
             }
         });
     </script>
@@ -388,7 +371,7 @@
         
         <div class="footer">
             <p>Banana Bot © 2023 | Все права защищены</p>
-            <p class="banana">🍌 🍌 🍌</p>
+            <p>🍌 🍌 🍌</p>
             <a href="https://t.me/Bananq_robot" class="bot-link">Начать играть с ботом</a>
         </div>
     </div>

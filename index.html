@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍌 Banana Bot - Правила</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffde7;
+            color: #5d4037;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #ffd54f;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #5d4037;
+            margin: 0;
+        }
+        .content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .rule {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ffd54f;
+        }
+        .rule:last-child {
+            border-bottom: none;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #8d6e63;
+        }
+        .banana {
+            font-size: 24px;
+        }
+        .bot-link {
+            display: inline-block;
+            background-color: #ffd54f;
+            color: #5d4037;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .bot-link:hover {
+            background-color: #ffc107;
+        }
+        .access-denied {
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+    <script>
+        // Проверяем реферера и userAgent
+        function isFromBot() {
+            // Проверяем UserAgent Telegram
+            if(/Telegram/.test(navigator.userAgent)) return true;
+            
+            // Проверяем, что перешли по ссылке из бота
+            try {
+                const referrer = document.referrer.toLowerCase();
+                return referrer.includes('t.me') || referrer.includes('telegram');
+            } catch(e) {
+                return false;
+            }
+        }
+
+        // Проверяем при загрузке
+        window.onload = function() {
+            if(!isFromBot()) {
+                document.body.innerHTML = `
+                    <div class="access-denied">
+                        <h1>🚫 Доступ ограничен</h1>
+                        <p>Эта страница доступна только через Telegram бота Banana Bot.</p>
+                        <p>Пожалуйста, перейдите в бота и используйте команду /info или /start для получения ссылки.</p>
+                        <a href="https://t.me/Bananq_robot" class="bot-link">Перейти в бота 🍌</a>
+                        <div style="font-size: 48px; margin-top: 20px;">🍌</div>
+                    </div>
+                `;
+                
+                // Меняем URL в адресной строке на читаемый текст
+                history.replaceState(null, null, '/banana-bot-rules');
+            } else {
+                // Для пользователей из Telegram - скрываем file:// путь и заменяем его
+                if(window.location.protocol === 'file:') {
+                    history.replaceState(null, null, '/banana-bot-rules');
+                }
+                
+                // Логирование для отладки
+                console.log("Пользователь зашел через Telegram Bot");
+            }
+        };
+    </script>
+</head>
+<body>
+    <!-- Контент будет заменён если доступ не из бота -->
+    <div class="header">
+        <h1><span class="banana">🍌</span> Banana Bot - Правила <span class="banana">🍌</span></h1>
+    </div>
+    
+    <div class="content">
+        <div class="rule">
+            <h3>1. Основные положения</h3>
+            <p>Banana Bot - это игровой бот с виртуальной валютой ⭐. Все игры носят развлекательный характер.</p>
+        </div>
+        
+        <div class="rule">
+            <h3>2. Виртуальная валюта</h3>
+            <p>Баланс каждого пользователя сбрасывается до 50⭐ ежедневно в 00:00 по времени сервера.</p>
+        </div>
+        
+        <div class="rule">
+            <h3>3. Доступные игры</h3>
+            <p>Бот предлагает несколько игр: кости, слоты, футбол, баскетбол, боулинг и дартс. В каждой игре можно играть бесплатно или делать ставки.</p>
+        </div>
+        
+        <div class="rule">
+            <h3>4. Режимы игры</h3>
+            <p>Для каждой игры доступны три режима: без ставки, со ставкой и ставка на конкретное число (для некоторых игр).</p>
+        </div>
+        
+        <div class="rule">
+            <h3>5. Топ игроков</h3>
+            <p>Команда /top показывает 5 игроков с наибольшим балансом. Топ обновляется в реальном времени.</p>
+        </div>
+        
+        <div class="rule">
+            <h3>6. Банановые шутки</h3>
+            <p>Команда /joke выдает случайную банановую шутку из коллекции бота.</p>
+        </div>
+        
+        <div class="rule">
+            <h3>7. Питомцы</h3>
+            <p>Команда /pets показывает случайное фото кошки или собаки.</p>
+        </div>
+        
+        <div class="rule">
+            <h3>8. Ответственность</h3>
+            <p>Администрация бота не несет ответственности за возможные технические сбои. Все решения бота окончательны.</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Banana Bot © 2023 | Все права защищены</p>
+        <p class="banana">🍌 🍌 🍌</p>
+    </div>
+</body>
+</html>

@@ -10,31 +10,23 @@
         
         body {
             font-family: 'Comic Neue', cursive;
-            background-color: #f5f5dc;
             color: #5d4037;
             margin: 0;
             padding: 0;
-            background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
-            background-size: cover;
+            background-color: #fff9e6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><text x="20" y="120" font-family="Arial" font-size="120" fill="rgba(255, 225, 120, 0.3)">🍌</text></svg>');
+            background-size: 200px 200px;
             background-attachment: fixed;
             position: relative;
-        }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(255, 253, 231, 0.9), rgba(255, 245, 157, 0.8));
-            z-index: -1;
+            -webkit-text-size-adjust: 100%;
         }
         
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .header {
@@ -176,23 +168,22 @@
             box-shadow: 0 6px 8px rgba(0,0,0,0.15);
         }
         
-        .access-denied {
-            text-align: center;
-            padding: 50px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            max-width: 600px;
-            margin: 50px auto;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
         .math-gif {
             text-align: center;
             margin: 20px 0;
             padding: 10px;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .math-gif img {
+            max-width: 100%;
+            border-radius: 8px;
+            background-color: #fff9e6;
+            padding: 10px;
         }
         
         .emoji {
@@ -205,46 +196,33 @@
             padding: 2px 5px;
             border-radius: 3px;
         }
+        
+        /* Банановый оверлей для плавного перехода */
+        .banana-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><text x="30" y="180" font-family="Arial" font-size="180" fill="rgba(255, 225, 120, 0.15)">🍌</text></svg>');
+            background-size: 300px 300px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
     </style>
     <script>
-        // Проверяем, открыт ли сайт в Telegram WebView
-        function isTelegramWebApp() {
-            return window.Telegram && window.Telegram.WebApp;
-        }
-
-        // Проверяем при загрузке
+        // Инициализация Telegram WebApp если открыто в Telegram
         window.onload = function() {
-            // Если открыто в Telegram WebView - показываем контент
-            if(isTelegramWebApp()) {
-                // Инициализируем WebApp
+            if(window.Telegram && window.Telegram.WebApp) {
                 Telegram.WebApp.expand();
                 Telegram.WebApp.enableClosingConfirmation();
-                return;
             }
             
-            // Проверяем UserAgent Telegram
-            const isTelegram = /Telegram/.test(navigator.userAgent);
-            
-            // Проверяем реферера
-            let isFromBot = false;
-            try {
-                const referrer = document.referrer.toLowerCase();
-                isFromBot = referrer.includes('t.me') || referrer.includes('telegram');
-            } catch(e) {
-                console.log("Не удалось проверить реферера");
-            }
-            
-            // Если не из Telegram - показываем сообщение об ограничении доступа
-            if(!isTelegram && !isFromBot) {
-                document.body.innerHTML = `
-                    <div class="access-denied">
-                        <h1>🚫 Доступ ограничен</h1>
-                        <p>Эта страница доступна только через Telegram бота Banana Bot.</p>
-                        <p>Пожалуйста, перейдите в бота и используйте команду <span class="command">/info</span> или <span class="command">/start</span> для получения ссылки.</p>
-                        <a href="https://t.me/Bananq_robot" class="bot-link">Перейти в бота</a>
-                    </div>
-                `;
-            }
+            // Убедимся, что шрифты загружены правильно
+            document.fonts.ready.then(function() {
+                document.body.style.fontFamily = "'Comic Neue', cursive";
+            });
         };
         
         // Изменяем title при уходе со страницы
@@ -258,7 +236,7 @@
     </script>
 </head>
 <body>
-    <!-- Основной контент -->
+    <div class="banana-overlay"></div>
     <div class="container">
         <div class="header">
             <h1>🍌 Banana Bot - Правила и команды 🍌</h1>
@@ -270,7 +248,7 @@
                 <p>Banana Bot - это веселый игровой бот с виртуальной валютой <span class="highlight">⭐ Звезды</span>. Все игры носят развлекательный характер.</p>
                 
                 <div class="math-gif">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Математическая гифка" style="max-width: 200px; border-radius: 8px;">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Математическая гифка">
                 </div>
                 
                 <h3>Важные особенности:</h3>
@@ -282,6 +260,7 @@
                 </ul>
             </div>
             
+            <!-- Остальной контент остается без изменений -->
             <div class="section">
                 <h2>Доступные команды</h2>
                 
